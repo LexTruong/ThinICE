@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from routers import data_router
 
 app = FastAPI()
 
@@ -10,6 +11,4 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-@app.get("/api/hello")
-def hello():
-    return {"message": "Hello from FastAPI!"}
+app.include_router(data_router, prefix="/api/data")
